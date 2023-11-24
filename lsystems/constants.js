@@ -110,3 +110,103 @@ let sierpinskiConstants = {
         x: width, y: height
     }
 }
+
+let sierpinskiArrowHeadConstants = {
+    axiom: "A",
+    len: 700,
+    reducer: 0.5,
+    constants: "+ -",
+    angle: Math.PI / 3,
+    drawRules: {
+        "A": (len) => {
+            line(0, 0, 0, -len);
+            translate(0, -len)
+        },
+
+        "B": (len) => {
+            let colorValue = map(turnCount % 7, 0, 6, 0, 255);
+
+            //console.log("Turn: ", colorValue)
+            // Set the stroke color
+            stroke(colorValue, 100, 100);
+
+            // Draw the line
+            line(0, 0, 0, -len);
+
+            // Translate without stroke affecting translation
+            translate(0, -len);
+
+            // Reset stroke to default
+            stroke(0);
+
+
+        },
+        "+": () => {
+            rotate(sierpinskiArrowHeadConstants.angle)
+            turnCount++;
+        },
+        "-": () => {
+            rotate(-sierpinskiArrowHeadConstants.angle)
+            turnCount++;
+        }
+    },
+    rules: [
+        { a: "A", b: "B-A-B" },
+        { a: "B", b: "A+B+A" }
+    ],
+    startPos: {
+        x: 0, y: height
+    }
+}
+
+let dragonCurveConstants = {
+    axiom: "F",
+    len: 1000,
+    reducer: 0.65,
+    constants: "+ -",
+    angle: Math.PI / 2,
+    drawRules: {
+        "G": (len) => {
+            // Draw the line
+            line(0, 0, 0, -len);
+            translate(0, -len);
+        },
+        "F": (len) => {
+            let r = Math.random() * 255;
+            let g = Math.random() * 255;
+            let b = Math.random() * 255;
+
+
+            //console.log("Turn: ", colorValue)
+            // Set the stroke color
+
+            stroke(r, g, b);
+
+            // Draw the line
+            line(0, 0, 0, -len);
+
+            // Translate without stroke affecting translation
+            translate(0, -len);
+
+            // Reset stroke to default
+            //stroke(0);
+
+
+        },
+        "+": () => {
+            rotate(dragonCurveConstants.angle)
+
+        },
+        "-": () => {
+            rotate(-dragonCurveConstants.angle)
+
+        }
+    },
+    rules: [
+        { a: "F", b: "F+G" },
+        { a: "G", b: "F-G" }
+    ],
+    startPos: {
+        x: width / 4, y: height / 2
+    }
+}

@@ -51,7 +51,7 @@ let turtleLSystem = (sentence, len, drawRules, start) => {
 	}
 }
 
-let drawLSystem = (systemConstants, start) => {
+let drawLSystem = (systemConstants, start, iterations = 5) => {
 
 
 	if (drawSentence == "") {
@@ -63,7 +63,7 @@ let drawLSystem = (systemConstants, start) => {
 		drawLen = systemConstants.len;
 	}
 
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < iterations; i++) {
 		let { sentence, len } = generateLSystem(
 			systemConstants.axiom,
 			systemConstants.rules,
@@ -104,6 +104,26 @@ const leafyTree = () => {
 	drawLSystem(leafyTreeConstants, leafyTreeConstants.startPos)
 }
 
+const dragonCurve = () => {
+	reset();
+
+	drawLSystem(
+		dragonCurveConstants,
+		dragonCurveConstants.startPos,
+		10
+	)
+}
+
+const arrowHead = () => {
+	reset();
+
+	drawLSystem(
+		sierpinskiArrowHeadConstants,
+		sierpinskiArrowHeadConstants.startPos,
+		6
+	)
+}
+
 
 
 const reset = () => {
@@ -128,6 +148,12 @@ function setup() {
 
 	var leafy = createButton("Generate Leafy Tree");
 	leafy.mousePressed(leafyTree);
+
+	var dragon = createButton("Generate Dragon Curve");
+	dragon.mousePressed(dragonCurve);
+
+	var arrowHeadSierpinski = createButton("Generate Sierspinski AH");
+	arrowHeadSierpinski.mousePressed(arrowHead);
 
 
 }
