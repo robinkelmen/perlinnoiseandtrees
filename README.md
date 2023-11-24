@@ -1,5 +1,13 @@
 # perlinnoiseandtrees
 
+# Perlin Noise 3D Terrain
+
+Learned a pretty cool way to animate a terrain using perlin noise. Check it out in the 3dTerrain folder. Run by starting "index.html". 
+
+![perlinnoise](noise.png)
+
+
+
 # L-System Fractals
 
 This repository contains implementations of L-system fractals using p5.js. L-systems are a formal grammar system used to model the growth of plants and fractals.
